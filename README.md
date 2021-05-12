@@ -1,4 +1,4 @@
-# MyDesk - Your productivity tool
+# MyDesk - Your virtual organisational tool
 
 
 ## Introduction
