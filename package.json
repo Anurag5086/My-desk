@@ -41,7 +41,7 @@
     "server": "cd backend && npm start",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
-  "proxy": "http://localhost:4000",
+  "proxy": "https://mydeskbackend.herokuapp.com",
   "browserslist": {
     "production": [
       ">0.2%",

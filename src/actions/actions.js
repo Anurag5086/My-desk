@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const addUser = async (name, email, googleId) => {
     return await axios
-    .post('http://localhost:4000/addUser',{
+    .post('https://mydeskbackend.herokuapp.com/addUser',{
         name: name,
         email: email,
         googleId: googleId
@@ -13,7 +13,7 @@ export const addUser = async (name, email, googleId) => {
 
 export const addTodo = async (email, todoName, todoDate, todoTime) => {
   return await axios
-  .post('http://localhost:4000/addTodo',{
+  .post('https://mydeskbackend.herokuapp.com/addTodo',{
       email: email,
       todoName: todoName,
       todoDate: todoDate,
@@ -25,21 +25,21 @@ export const addTodo = async (email, todoName, todoDate, todoTime) => {
 
 export const getTodos = async (email) => {
   return await axios
-  .get(`http://localhost:4000/getTodo/${email}`)
+  .get(`https://mydeskbackend.herokuapp.com/getTodo/${email}`)
   .then(res => res.data)
   .catch(err => Promise.reject(err));
 }
 
 export const deleteTodo = async (email, todoName) => {
   return await axios
-  .delete(`http://localhost:4000/deleteTodo/${email}/${todoName}`)
+  .delete(`https://mydeskbackend.herokuapp.com/deleteTodo/${email}/${todoName}`)
   .then(res => res.data)
   .catch(err => Promise.reject(err));
 }
 
 export const checkTodo = async (email, todoName, todoStatus) => {
   return await axios
-  .put(`http://localhost:4000/checkTodo`, {
+  .put(`https://mydeskbackend.herokuapp.com/checkTodo`, {
     email: email,
     todoName: todoName,
     todoStatus: todoStatus
@@ -50,7 +50,7 @@ export const checkTodo = async (email, todoName, todoStatus) => {
 
 export const addEvent = async (email, id, title, start, end) => {
   return await axios
-  .post(`http://localhost:4000/addEvent`, 
+  .post(`https://mydeskbackend.herokuapp.com/addEvent`, 
   { email, 
     id, 
     title, 
@@ -63,21 +63,21 @@ export const addEvent = async (email, id, title, start, end) => {
 
 export const deleteEvent = async (email, id) => {
   return await axios
-  .delete(`http://localhost:4000/deleteEvent/${email}/${id}`)
+  .delete(`https://mydeskbackend.herokuapp.com/deleteEvent/${email}/${id}`)
   .then(res => res.data)
   .catch(err => Promise.reject(err));
 }
 
 export const getEvents = async (email) => {
   return await axios
-  .get(`http://localhost:4000/getEvents/${email}`)
+  .get(`https://mydeskbackend.herokuapp.com/getEvents/${email}`)
   .then(res => res.data)
   .catch(err => Promise.reject(err));
 }
 
 export const uploadFile = async (email, data, name, date, type) => {
   return await axios
-  .post(`http://localhost:4000/uploadFile`, {
+  .post(`https://mydeskbackend.herokuapp.com/uploadFile`, {
     headers: { 'Content-Type': 'application/json' },
     email,
     data,
@@ -91,14 +91,14 @@ export const uploadFile = async (email, data, name, date, type) => {
 
 export const getFiles = async (email, type) => {
   return await axios
-  .get(`http://localhost:4000/getFiles/${email}/${type}`)
+  .get(`https://mydeskbackend.herokuapp.com/getFiles/${email}/${type}`)
   .then(res => res.data)
   .catch(err => Promise.reject(err));
 }
 
 export const deleteFile = async (email, id) => {
   return await axios
-  .delete(`http://localhost:4000/deleteFile/${email}/${id}`)
+  .delete(`https://mydeskbackend.herokuapp.com/deleteFile/${email}/${id}`)
   .then(res => res.data)
   .catch(err => Promise.reject(err));
 }
