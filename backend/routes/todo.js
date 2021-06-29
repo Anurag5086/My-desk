@@ -1,18 +1,18 @@
 module.exports = function(app, db){
-    // POST - Add new Todos 
+    // POST - Add new todos 
     app.post("/addTodo", (req, res) => {
-        let query = `INSERT INTO TODOS VALUES('${req.body.email}', '${req.body.todoName}', '${req.body.todoDate}', '${req.body.todoTime}', 0)`;
+        let query = `INSERT INTO todos VALUES('${req.body.email}', '${req.body.todoName}', '${req.body.todoDate}', '${req.body.todoTime}', 0)`;
         db.query(query, (err, result) => {
             if(err) throw err;
             res.send("Todo successfully added!")
         });
     });
 
-    // GET - Get all Todos of User
+    // GET - Get all todos of User
     app.get("/getTodo/:email", (req, res) => {
         const d = new Date();
         const date = `${d.getFullYear()}-${d.getMonth()+1}-${d.getUTCDate()}`;
-        let query = `SELECT TodoName, Status FROM TODOS WHERE Email='${req.params.email}' AND TodoDate='${date}' ORDER BY TodoTime DESC`;
+        let query = `SELECT TodoName, Status FROM todos WHERE Email='${req.params.email}' AND TodoDate='${date}' ORDER BY TodoTime DESC`;
         db.query(query, (err, result) => {
             if(err) throw err;
             res.send(result);
@@ -21,7 +21,7 @@ module.exports = function(app, db){
 
     // DELETE - Delete Todo of a User
     app.delete("/deleteTodo/:email/:todoName", (req, res) => {
-        let query = `DELETE FROM TODOS WHERE Email='${req.params.email}' AND TodoName='${req.params.todoName}'`;
+        let query = `DELETE FROM todos WHERE Email='${req.params.email}' AND TodoName='${req.params.todoName}'`;
         db.query(query, (err, result) => {
             if(err) throw err;
             res.send("Succesfully deleted!");
@@ -30,7 +30,7 @@ module.exports = function(app, db){
 
     // PUT - To change the Status
     app.put("/checkTodo", (req, res) => {
-        let query = `UPDATE TODOS SET Status='${req.body.todoStatus}' WHERE Email='${req.body.email}' AND TodoName='${req.body.todoName}'`;
+        let query = `UPDATE todos SET Status='${req.body.todoStatus}' WHERE Email='${req.body.email}' AND TodoName='${req.body.todoName}'`;
         db.query(query, (err, result) => {
             if(err) throw err;
             res.send("Succesfully updated!");
