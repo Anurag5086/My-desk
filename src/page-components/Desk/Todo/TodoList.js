@@ -1,26 +1,26 @@
-import React, { useState, useEffect } from 'react';
-import TodoForm from './TodoForm';
-import Todo from './Todo';
-import './styles.css'
-import { checkTodo, deleteTodo, getTodos } from '../../../actions/actions';
+import React, { useState, useEffect } from "react";
+import TodoForm from "./TodoForm";
+import Todo from "./Todo";
+import "./styles.css";
+import { checkTodo, deleteTodo, getTodos } from "../../../actions/actions";
 
 function TodoList() {
   const [todos, setTodos] = useState([]);
-  const email = localStorage.getItem('googleEmail')
+  const email = localStorage.getItem("googleEmail");
 
   useEffect(() => {
-    getTodos(email).then(res => {
+    getTodos(email).then((res) => {
       let arr = [];
-      for(let i = 0 ; i < res.length ; i++){
-        arr.push({text: res[i].TodoName, isComplete: res[i].Status});
+      for (let i = 0; i < res.length; i++) {
+        arr.push({ text: res[i].TodoName, isComplete: res[i].Status });
       }
 
       setTodos(arr);
-      console.log(todos)
+      console.log(todos);
     });
-  }, [])
+  }, []);
 
-  const addTodo = todo => {
+  const addTodo = (todo) => {
     if (!todo.text || /^\s*$/.test(todo.text)) {
       return;
     }
@@ -34,25 +34,27 @@ function TodoList() {
       return;
     }
     deleteTodo(email, todoText);
-    setTodos(prev => prev.map(item => (item.text === todoText ? newValue : item)));
+    setTodos((prev) =>
+      prev.map((item) => (item.text === todoText ? newValue : item))
+    );
   };
 
-  const removeTodo = name => {
-    const removedArr = [...todos].filter(todo => todo.text !== name);
+  const removeTodo = (name) => {
+    const removedArr = [...todos].filter((todo) => todo.text !== name);
     deleteTodo(email, name);
     setTodos(removedArr);
   };
 
-  const completeTodo = name => {
-    let updatedTodos = todos.map(todo => {
+  const completeTodo = (name) => {
+    let updatedTodos = todos.map((todo) => {
       if (todo.text === name) {
         todo.isComplete = !todo.isComplete;
-        let c = todo.isComplete? 1:0;
+        let c = todo.isComplete ? 1 : 0;
         checkTodo(email, name, c);
       }
       return todo;
     });
-    
+
     setTodos(updatedTodos);
   };
 

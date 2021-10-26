@@ -1,19 +1,17 @@
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Landing from './pages/Landing/Landing';
-import Login from './pages/Auth/Login';
-import Desk from './pages/Desk/Desk';
-import GroupStudying from './pages/GroupStudy/GroupStudy';
-import College from "./pages/College/College"
-import Personal from './pages/Personal/Personal'
-import Assignment from './pages/Assignment/Assignment';
-import MainCalender from './pages/MainCalender/MainCalender'
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Landing from "./pages/Landing/Landing";
+import Login from "./pages/Auth/Login";
+import Desk from "./pages/Desk/Desk";
+import GroupStudying from "./pages/GroupStudy/GroupStudy";
+import College from "./pages/College/College";
+import Personal from "./pages/Personal/Personal";
+import Assignment from "./pages/Assignment/Assignment";
+import MainCalender from "./pages/MainCalender/MainCalender";
 
 function App() {
-  const Assignment1 = ({match}) => {
-    return(
-      <Assignment type={match.params.type} />
-    );
-  }
+  const Assignment1 = ({ match }) => {
+    return <Assignment type={match.params.type} />;
+  };
   return (
     <Router>
       <Switch>

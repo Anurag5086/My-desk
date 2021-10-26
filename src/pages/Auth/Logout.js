@@ -1,5 +1,5 @@
-import React from 'react';
-import LogoutHooks from '../../page-components/Auth/LogoutHooks';
+import React from "react";
+import LogoutHooks from "../../page-components/Auth/LogoutHooks";
 
 function Logout() {
   return (

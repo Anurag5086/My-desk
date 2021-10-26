@@ -1,12 +1,12 @@
-import React from 'react';
-import { useGoogleLogin } from 'react-google-login';
+import React from "react";
+import { useGoogleLogin } from "react-google-login";
 import { useHistory } from "react-router-dom";
-import google from '../../assets/images/google.png';
-import { addUser } from '../../actions/actions'
-import './styles.css'
+import google from "../../assets/images/google.png";
+import { addUser } from "../../actions/actions";
+import "./styles.css";
 
 const clientId =
-  '707788443358-u05p46nssla3l8tmn58tpo9r5sommgks.apps.googleusercontent.com';
+  "707788443358-u05p46nssla3l8tmn58tpo9r5sommgks.apps.googleusercontent.com";
 
 function LoginHooks() {
   const history = useHistory();
@@ -20,9 +20,7 @@ function LoginHooks() {
   };
 
   const onFailure = (res) => {
-    alert(
-      `Failed to login! Please try again!`
-    );
+    alert(`Failed to login! Please try again!`);
   };
 
   const { signIn } = useGoogleLogin({
@@ -30,7 +28,7 @@ function LoginHooks() {
     onFailure,
     clientId,
     isSignedIn: true,
-    accessType: 'offline',
+    accessType: "offline",
   });
 
   return (

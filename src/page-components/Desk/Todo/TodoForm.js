@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { addTodo } from '../../../actions/actions';
+import React, { useState, useEffect, useRef } from "react";
+import { addTodo } from "../../../actions/actions";
 
 function TodoForm(props) {
-  const [input, setInput] = useState(props.edit ? props.edit.value : '');
+  const [input, setInput] = useState(props.edit ? props.edit.value : "");
 
   let email = localStorage.getItem("googleEmail");
 
@@ -10,55 +10,55 @@ function TodoForm(props) {
 
   useEffect(() => {
     inputRef.current.focus();
-  },[]);
+  }, []);
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     setInput(e.target.value);
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     props.onSubmit({
       id: Math.floor(Math.random() * 10000),
-      text: input
+      text: input,
     });
-    setInput('');
+    setInput("");
 
     let d = new Date();
-    const dateFull = `${d.getFullYear()}-${d.getMonth()+1}-${d.getUTCDate()}`;
+    const dateFull = `${d.getFullYear()}-${d.getMonth() + 1}-${d.getUTCDate()}`;
     const timeFull = `${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`;
 
     addTodo(email, input, dateFull, timeFull);
   };
 
   return (
-    <form onSubmit={handleSubmit} className='todo-form'>
+    <form onSubmit={handleSubmit} className="todo-form">
       {props.edit ? (
         <>
           <input
-            placeholder='Update your item'
+            placeholder="Update your item"
             value={input}
             onChange={handleChange}
-            name='text'
+            name="text"
             ref={inputRef}
-            className='todo-input edit'
+            className="todo-input edit"
           />
-          <button onClick={handleSubmit} className='todo-button edit'>
+          <button onClick={handleSubmit} className="todo-button edit">
             Update
           </button>
         </>
       ) : (
         <>
           <input
-            placeholder='Add a todo'
+            placeholder="Add a todo"
             value={input}
             onChange={handleChange}
-            name='text'
-            className='todo-input'
+            name="text"
+            className="todo-input"
             ref={inputRef}
           />
-          <button onClick={() => handleSubmit} className='todo-button'>
+          <button onClick={() => handleSubmit} className="todo-button">
             Add todo
           </button>
         </>

@@ -8,9 +8,9 @@ const app = express();
 const port = process.env.PORT || 8000;
 
 //Upload config
-app.use(express.static('public'));
-app.use(express.json({ limit: '50mb' }));
-app.use(express.urlencoded({ limit: '50mb', extended: true }));
+app.use(express.static("public"));
+app.use(express.json({ limit: "50mb" }));
+app.use(express.urlencoded({ limit: "50mb", extended: true }));
 
 //middleware
 app.use(express.json());
@@ -27,12 +27,12 @@ const db = mysql.createConnection({
 });
 
 //Routes
-require('./routes/user')(app, db);
-require('./routes/todo')(app, db);
-require('./routes/calender')(app, db);
-require('./routes/upload')(app, db);
+require("./routes/user")(app, db);
+require("./routes/todo")(app, db);
+require("./routes/calender")(app, db);
+require("./routes/upload")(app, db);
 
-db.connect(function(err) {
+db.connect(function (err) {
   if (err) throw err;
   console.log("DB Connected!");
 });
